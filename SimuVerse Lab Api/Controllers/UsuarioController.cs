@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using ALQUILER_VIDEOJUEGOS_BACK.Models;
+using Microsoft.AspNetCore.Mvc;
 using SimuVerse_Lab_Api.Interfaces;
 
 namespace SimuVerse_Lab_Api.Controllers
@@ -18,5 +19,11 @@ namespace SimuVerse_Lab_Api.Controllers
         //{
         //    return Ok(await _Service.GetUsuario());
         //}
+
+        [HttpPost("set-usuario")]
+        public async Task<IActionResult> SetUsuario(SetUsuario model)
+        {
+            return Ok(await _Service.SetUsuario(model));
+        }
     }
 }
