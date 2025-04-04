@@ -1,4 +1,6 @@
-﻿using Azure;
+﻿using ALQUILER_VIDEOJUEGOS_BACK.DTO;
+using ALQUILER_VIDEOJUEGOS_BACK.Models;
+using Microsoft.EntityFrameworkCore;
 using SimuVerse_Lab_Api.Context;
 using SimuVerse_Lab_Api.Interfaces;
 
@@ -27,40 +29,40 @@ namespace SimuVerse_Lab_Api.Services
         //    return result;
         //}
 
-        //public async Task<Response<SetUserResult>> SetUsuario(SetUsuario model)
-        //{
-        //    //var result = new Response();
-        //    var result = new Response<SetUserResult>();
-        //    var passHash = Utilidades.HashPassword(model.Contrasena);
-        //    try
-        //    {
+        public async Task<Response<SetUserResult>> SetUsuario(SetUsuario model)
+        {
+            //var result = new Response();
+            var result = new Response<SetUserResult>();
+            var passHash = Utilidades.HashPassword(model.Contrasena);
+            try
+            {
 
-        //        var resp = _context.SetUserResult
-        //            .FromSqlInterpolated($"dbo.SetUsuario {model.Usuario},{model.Nombre},{model.Apellido},{model.Correo},{passHash},{model.Direccion},{model.Telefono}").ToList();
+                var resp = _context.SetUserResult
+                    .FromSqlInterpolated($"dbo.SetUsuario {model.Nombre},{model.Apellido},{model.Correo},{passHash},{model.IdRol},{model.IdInstitucion}").ToList();
 
-        //        result.SingleData = resp.FirstOrDefault();
+                result.SingleData = resp.FirstOrDefault();
 
-        //        if (result.SingleData.EstatusRegistro == "CORRECTO")
-        //        {
-        //            result.Message = result.SingleData.Result;
-        //            result.Successful = true;
-        //        }
-        //        else
-        //        {
-        //            result.Message = result.SingleData.Result;
-        //            result.Successful = false;
-        //        }
+                if (result.SingleData.EstatusRegistro == "CORRECTO")
+                {
+                    result.Message = result.SingleData.Result;
+                    result.Successful = true;
+                }
+                else
+                {
+                    result.Message = result.SingleData.Result;
+                    result.Successful = false;
+                }
 
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        result.Errors.Add(ex.Message);
-        //        result.Message = "No se ha podido registrar sus datos";
-        //        result.Successful = false;
+            }
+            catch (Exception ex)
+            {
+                result.Errors.Add(ex.Message);
+                result.Message = "No se ha podido registrar sus datos";
+                result.Successful = false;
 
-        //    }
+            }
 
-        //    return result;
-        //}
+            return result;
+        }
     }
 }
