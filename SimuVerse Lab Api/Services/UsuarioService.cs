@@ -3,10 +3,11 @@ using ALQUILER_VIDEOJUEGOS_BACK.Models;
 using Microsoft.EntityFrameworkCore;
 using SimuVerse_Lab_Api.Context;
 using SimuVerse_Lab_Api.Interfaces;
+using SimuVerse_Lab_Api.Models;
 
 namespace SimuVerse_Lab_Api.Services
 {
-    public class UsuarioService:IUsuarioService
+    public class UsuarioService : IUsuarioService
     {
         private readonly SimuVerseLabContext _context;
         public UsuarioService(SimuVerseLabContext context)
@@ -14,20 +15,50 @@ namespace SimuVerse_Lab_Api.Services
             this._context = context;
         }
 
-        //public async Task<Response<GetUsuarioDTO>> GetUsuario()
-        //{
-        //    var result = new Response<GetUsuarioDTO>();
-        //    try
-        //    {
-        //        result.DataList = _context.GetUsuarioDTO.FromSqlInterpolated($"dbo.GetUsuario").ToList();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        result.Errors.Add(ex.Message);
-        //    }
+        public async Task<Response<GetUsuariosPorInstitucion>> GetUsuariosPorInstitucion(int IdInstitucion)
+        {
+            var result = new Response<GetUsuariosPorInstitucion>();
+            try
+            {
+                result.DataList = _context.GetUsuariosPorInstitucion.FromSqlInterpolated($"dbo.get_usuarios_por_institucion {IdInstitucion}").ToList();
+            }
+            catch (Exception ex)
+            {
+                result.Errors.Add(ex.Message);
+            }
 
-        //    return result;
-        //}
+            return result;
+        }
+
+        public async Task<Response<GetAllUsuarios>> GetAllProfesores()
+        {
+            var result = new Response<GetAllUsuarios>();
+            try
+            {
+                result.DataList = _context.GetAllProfesores.FromSqlInterpolated($"dbo.sp_GetAllProfesores").ToList();
+            }
+            catch (Exception ex)
+            {
+                result.Errors.Add(ex.Message);
+            }
+
+            return result;
+        }
+
+        public async Task<Response<GetAllUsuarios>> GetAllEstudiantes()
+        {
+            var result = new Response<GetAllUsuarios>();
+            try
+            {
+                result.DataList = _context.GetAllProfesores.FromSqlInterpolated($"dbo.sp_GetEstudiantes").ToList();
+            }
+            catch (Exception ex)
+            {
+                result.Errors.Add(ex.Message);
+            }
+
+            return result;
+        }
 
         public async Task<Response<SetUserResult>> SetUsuario(SetUsuario model)
         {

@@ -44,6 +44,7 @@ builder.Services.AddScoped<IAutenticacionService, AutenticacionService>();
 builder.Services.AddScoped<ILaboratorioService, LaboratorioService>();
 builder.Services.AddScoped<IAulaService, AulaService>();
 builder.Services.AddScoped<IExperimentoService, ExperimentoService>();
+builder.Services.AddScoped<IDashboardService, DashboardService>();
 
 builder.Services.AddCors();
 
