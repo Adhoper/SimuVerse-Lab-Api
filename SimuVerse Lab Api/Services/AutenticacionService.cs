@@ -63,7 +63,7 @@ namespace SimuVerse_Lab_Api.Services
                         var tokenDescriptor = new SecurityTokenDescriptor
                         {
                             Subject = claims,
-                            Expires = DateTime.UtcNow.AddHours(4),
+                            Expires = DateTime.UtcNow.AddHours(3),
                             SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(keyBytes), SecurityAlgorithms.HmacSha256Signature),
                         };
 
@@ -99,7 +99,7 @@ namespace SimuVerse_Lab_Api.Services
                     }
                     else
                     {
-                        token.Message = "Su Contraseña es incorrecta.";
+                        token.Message = "Su contraseña es incorrecta.";
                         token.SingleData = new TokenGot { Token = "" };
 
                         token.Successful = false;
@@ -118,7 +118,7 @@ namespace SimuVerse_Lab_Api.Services
                     else
                     {
                         token.Successful = false;
-                        token.Message = "El Correo Ingresado no existe";
+                        token.Message = "El correo ingresado no existe";
                     }
 
                 }

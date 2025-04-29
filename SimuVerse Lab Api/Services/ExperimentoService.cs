@@ -65,5 +65,50 @@ namespace SimuVerse_Lab_Api.Services
 
             return result;
         }
+
+        public async Task<Response<HistorialExpInstitucionDto>> HistorialExpInstitucion(int IdInstitucion)
+        {
+            var result = new Response<HistorialExpInstitucionDto>();
+            try
+            {
+                result.DataList = _context.HistorialExpInstitucionDto.FromSqlInterpolated($"dbo.sp_ObtenerHistorialExpPorInstitucion {IdInstitucion}").ToList();
+            }
+            catch (Exception ex)
+            {
+                result.Errors.Add(ex.Message);
+            }
+
+            return result;
+        }
+
+        public async Task<Response<HistorialExpPersonalDto>> HistorialExpPersonal(int IdUsuario)
+        {
+            var result = new Response<HistorialExpPersonalDto>();
+            try
+            {
+                result.DataList = _context.HistorialExpPersonalDto.FromSqlInterpolated($"dbo.sp_ObtenerHistorialExpPersonal {IdUsuario}").ToList();
+            }
+            catch (Exception ex)
+            {
+                result.Errors.Add(ex.Message);
+            }
+
+            return result;
+        }
+
+        public async Task<Response<HistorialExpProfesorDto>> HistorialExpProfesor(int IdUsuario)
+        {
+            var result = new Response<HistorialExpProfesorDto>();
+            try
+            {
+                result.DataList = _context.HistorialExpProfesorDto.FromSqlInterpolated($"dbo.sp_ObtenerHistorialExpPorProfesor {IdUsuario}").ToList();
+            }
+            catch (Exception ex)
+            {
+                result.Errors.Add(ex.Message);
+            }
+
+            return result;
+        }
     }
 }

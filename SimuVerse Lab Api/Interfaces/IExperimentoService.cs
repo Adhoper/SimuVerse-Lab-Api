@@ -9,5 +9,8 @@ namespace SimuVerse_Lab_Api.Interfaces
     {
         Task<Response<GetExperimentos>> GetExperimentos(int IdLaboratorio);
         Task<Response<SetResultadoExperimentoResult>> SetResultadoExperimento(SetResultadoExperimento model);
+        Task<Response<HistorialExpProfesorDto>> HistorialExpProfesor(int IdUsuario);
+        Task<Response<HistorialExpPersonalDto>> HistorialExpPersonal(int IdUsuario);
+        Task<Response<HistorialExpInstitucionDto>> HistorialExpInstitucion(int IdInstitucion);
     }
 }
