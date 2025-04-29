@@ -14,11 +14,14 @@ namespace SimuVerse_Lab_Api.Controllers
             this._Service = Service;
         }
 
-        [HttpPost]
-        [Route("ValidarAutenticacion")]
-        public async Task<Response> ValidarAutenticacion([FromBody] UsuarioLoginDTO data)
+        [HttpPost("ValidarAutenticacion")]
+        public async Task<IActionResult> ValidarAutenticacion([FromBody] UsuarioLoginDTO data)
         {
-            return await _Service.ValidarAutenticacion(data);
+            var result = await _Service.ValidarAutenticacion(data);
+
+            // Esto mantiene tu lógica y deja que ASP.NET Core devuelva un código HTTP correcto
+            return result.Successful ? Ok(result) : BadRequest(result);
         }
+
     }
 }
