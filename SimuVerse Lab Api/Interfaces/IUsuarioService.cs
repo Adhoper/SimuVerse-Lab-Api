@@ -6,8 +6,8 @@ namespace SimuVerse_Lab_Api.Interfaces
 {
     public interface IUsuarioService
     {
-        Task<Response<GetAllUsuarios>> GetAllProfesores();
-        Task<Response<GetAllUsuarios>> GetAllEstudiantes();
+        Task<Response<GetAllUsuarios>> GetAllProfesores(int IdInstitucion);
+        Task<Response<GetAllUsuarios>> GetAllEstudiantes(int IdInstitucion);
         Task<Response<SetUserResult>> SetUsuario(SetUsuario setUsuario);
         Task<Response<GetUsuariosPorInstitucion>> GetUsuariosPorInstitucion(int IdInstitucion);
     }

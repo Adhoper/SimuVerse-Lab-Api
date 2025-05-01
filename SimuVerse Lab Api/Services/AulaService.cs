@@ -16,12 +16,12 @@ namespace SimuVerse_Lab_Api.Services
             this._context = context;
         }
 
-        public async Task<Response<GetAulaAdministrativo>> GetAulaAdministrativo()
+        public async Task<Response<GetAulaAdministrativo>> GetAulaAdministrativo(int IdInstitucion)
         {
             var result = new Response<GetAulaAdministrativo>();
             try
             {
-                result.DataList = _context.GetAulaAdministrativo.FromSqlInterpolated($"dbo.sp_GetAulasAdministrativo").ToList();
+                result.DataList = _context.GetAulaAdministrativo.FromSqlInterpolated($"dbo.sp_GetAulasAdministrativo {IdInstitucion}").ToList();
             }
             catch (Exception ex)
             {
@@ -54,7 +54,7 @@ namespace SimuVerse_Lab_Api.Services
             {
 
                 var resp = _context.OperacionesAulaResult
-                    .FromSqlInterpolated($"dbo.sp_CrearAula {model.NombreAula},{model.Capacidad}").ToList();
+                    .FromSqlInterpolated($"dbo.sp_CrearAula {model.NombreAula},{model.Capacidad},{model.IdInstitucion}").ToList();
 
                 result.SingleData = resp.FirstOrDefault();
 

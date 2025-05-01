@@ -30,12 +30,12 @@ namespace SimuVerse_Lab_Api.Services
             return result;
         }
 
-        public async Task<Response<GetAllUsuarios>> GetAllProfesores()
+        public async Task<Response<GetAllUsuarios>> GetAllProfesores(int IdInstitucion)
         {
             var result = new Response<GetAllUsuarios>();
             try
             {
-                result.DataList = _context.GetAllProfesores.FromSqlInterpolated($"dbo.sp_GetAllProfesores").ToList();
+                result.DataList = _context.GetAllProfesores.FromSqlInterpolated($"dbo.sp_GetAllProfesores {IdInstitucion}").ToList();
             }
             catch (Exception ex)
             {
@@ -45,12 +45,12 @@ namespace SimuVerse_Lab_Api.Services
             return result;
         }
 
-        public async Task<Response<GetAllUsuarios>> GetAllEstudiantes()
+        public async Task<Response<GetAllUsuarios>> GetAllEstudiantes(int IdInstitucion)
         {
             var result = new Response<GetAllUsuarios>();
             try
             {
-                result.DataList = _context.GetAllProfesores.FromSqlInterpolated($"dbo.sp_GetEstudiantes").ToList();
+                result.DataList = _context.GetAllProfesores.FromSqlInterpolated($"dbo.sp_GetEstudiantes {IdInstitucion}").ToList();
             }
             catch (Exception ex)
             {

@@ -40,7 +40,10 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<SimuVerseLabContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DevHostConnection")));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DevConnection")));
+
+//builder.Services.AddDbContext<SimuVerseLabContext>(options =>
+//    options.UseSqlServer(builder.Configuration.GetConnectionString("DevHostConnection")));
 
 builder.Services.AddScoped<IUsuarioService, UsuarioService>();
 builder.Services.AddScoped<IAutenticacionService, AutenticacionService>();

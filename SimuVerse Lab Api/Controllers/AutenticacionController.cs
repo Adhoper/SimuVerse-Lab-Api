@@ -19,9 +19,10 @@ namespace SimuVerse_Lab_Api.Controllers
         {
             var result = await _Service.ValidarAutenticacion(data);
 
-            // Esto mantiene tu lógica y deja que ASP.NET Core devuelva un código HTTP correcto
-            return result.Successful ? Ok(result) : BadRequest(result);
+            // Siempre devuelve 200 OK con el resultado, aunque sea error lógico (como contraseña incorrecta)
+            return Ok(result);
         }
+
 
     }
 }

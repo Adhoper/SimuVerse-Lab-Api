@@ -14,16 +14,16 @@ namespace SimuVerse_Lab_Api.Controllers
             this._Service = Service;
         }
 
-        [HttpGet("get-all-profesor")]
-        public async Task<IActionResult> GetAllProfesores()
+        [HttpGet("get-all-profesor/{IdInstitucion}")]
+        public async Task<IActionResult> GetAllProfesores(int IdInstitucion)
         {
-            return Ok(await _Service.GetAllProfesores());
+            return Ok(await _Service.GetAllProfesores(IdInstitucion));
         }
 
-        [HttpGet("get-all-estudiantes")]
-        public async Task<IActionResult> GetAllEstudiantes()
+        [HttpGet("get-all-estudiantes/{IdInstitucion}")]
+        public async Task<IActionResult> GetAllEstudiantes(int IdInstitucion)
         {
-            return Ok(await _Service.GetAllEstudiantes());
+            return Ok(await _Service.GetAllEstudiantes(IdInstitucion));
         }
 
         [HttpGet("get-usuarios-institucion/{IdInstitucion}")]

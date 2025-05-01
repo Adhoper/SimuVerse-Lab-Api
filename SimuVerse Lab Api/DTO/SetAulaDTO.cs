@@ -7,5 +7,6 @@ namespace SimuVerse_Lab_Api.DTO
     {
         public string NombreAula { get; set; }
         public int Capacidad { get; set; }
+        public int IdInstitucion { get; set; }
     }
 }
