@@ -8,7 +8,7 @@ namespace SimuVerse_Lab_Api.Interfaces
     public interface IAulaService
     {
         Task<Response<GetAulasEstudiante>> GetAulasEstudiante(GetAulaEstudianteDTO model);
-        Task<Response<GetAulaAdministrativo>> GetAulaAdministrativo();
+        Task<Response<GetAulaAdministrativo>> GetAulaAdministrativo(int IdInstitucion);
         Task<Response<OperacionesAulaResult>> SetAula(SetAulaDTO model);
         Task<Response<OperacionesAulaResult>> UpdateAula(UpdateAulaDTO model);
         Task<Response<OperacionesAulaResult>> ChangeEstatusAula(int IdAula);
